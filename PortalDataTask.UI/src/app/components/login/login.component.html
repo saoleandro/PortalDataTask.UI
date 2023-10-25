@@ -1,0 +1,46 @@
+<div  class="login-body">
+    <form #form="ngForm" [formGroup]="loginForm">
+        <div class="login">
+            <div class="login-title">
+              Login
+            </div>
+            <!-- username -->
+            <div class="login-form">
+              <div class="login-user">
+                <label>Login</label>
+                <div class="form-field formdata-container"
+                     placement="top">
+                  <input type="text"
+                         name="userNameLogin"
+                         formControlName="userNameLogin"
+                         (keyup)="loginForm.get('userNameLogin')?.value;"
+                         width="100%"
+                         class="form-control pull-right text-right"
+                         maxlength="50"
+                         placeholder="Informe Login">
+                </div>
+              </div>
+              <!-- Senha -->
+              <div class="login-pass">
+                <div class="form-field formdata-container"
+                     placement="bottom"
+                     triggers="manual">
+                  <label>Senha</label>
+                  <input type="password"
+                         formControlName="password"
+                         name="password"
+                         class="form-control"
+                         id="inputPassword"
+                         placeholder="Senha"
+                         maxlength="20"/>
+                </div>
+              </div>
+              <!-- Submit -->
+              <div class="alignItensToRight">
+                <button type="button" class="btn btn-radius btn-primary" (click)="doLogin()">Ok</button>
+              </div>
+            </div>
+          </div>
+    </form>
+</div>
+<app-toast [toastStyle]="toastStyle" [message]="toastMessage" [visible]="toastVisible"></app-toast>

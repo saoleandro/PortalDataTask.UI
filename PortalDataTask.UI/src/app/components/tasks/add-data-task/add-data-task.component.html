@@ -1,0 +1,39 @@
+<app-header></app-header>
+
+<div class="container my-5">
+    <h1 class="mb-3">{{titulo}}</h1>  
+
+    <div class="row">
+        <div class="col-6">
+            <form #form="ngForm" [formGroup]="dataForm" (ngSubmit)="save()">
+              <div class="col-md-4" *ngIf="dataTask.id != 0 && dataTask.id != undefined">
+                <label for="codigo" class="form-label">Código</label>
+                <input type="text" class="form-control" id="codigo" [(ngModel)]="dataTask.id" [ngModelOptions]="{standalone: true}" readonly>
+              </div>
+                <div class="col-md-4">
+                  <label for="validateDate" class="form-label">Data de Validade</label>
+                  <input type="date" class="form-control" id="validateDate" [(ngModel)]="dataTask.validateDate" [ngModelOptions]="{standalone: true}">
+                  <p *ngIf="dataForm.get('date')?.hasError('dateValidator')">Date Error</p>
+                </div>
+                <div class="col-md-4">
+                    <label for="Status" class="form-label">Status</label>
+                    <select id="Status" class="form-select" (change)="getStatus($event)">
+                      <option selected value="-1">Escolha...</option>
+                        <option *ngFor="let status of statusList" [value]="status.code" [selected]="status.code == dataTask.status">{{status.name}}</option>
+                    </select>
+                  </div>
+                <div class="col-12">
+                    <label for="description" class="form-label">Descrição</label>
+                    <textarea class="form-control" id="description" rows="3" [(ngModel)]="dataTask.description" [ngModelOptions]="{standalone: true}"></textarea>
+                </div>
+                <br>
+                <div class="col-12">
+                  <button type="submit" class="btn btn-primary">Gravar</button>
+                </div>
+              </form>
+        </div>
+    </div>        
+</div>
+
+<app-loadmask [hidden]="!loading"></app-loadmask>
+<app-toast [toastStyle]="toastStyle" [message]="toastMessage" [visible]="toastVisible"></app-toast>

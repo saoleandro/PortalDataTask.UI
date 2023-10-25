@@ -1,0 +1,44 @@
+ <app-header></app-header>
+
+<div class="container my-5">
+        <h1 class="mb-3">Tarefas <a [routerLink]="['/tasks','add']" title="Adicionar nova tarefa"><i class="bi bi-plus-lg"></i></a> </h1>
+<table class="table" *ngIf="dataTasks && dataTasks.length > 0">
+    <thead>
+        <tr>
+            <td> </td>
+            <th>Id</th>
+            <th>Descrição</th>
+            <th>Data Validade</th>
+            <th>Status</th>
+            <th>Data de Criação</th>
+            <th>Data da Última Alteração</th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let dataTask of dataTasks">
+        <td><a [routerLink]="['/tasks','edit', dataTask.id]">
+            <span class="glyphicon glyphicon-pencil"></span><i class="bi bi-pencil-square"></i>
+            </a> &nbsp;
+            <a style="cursor:pointer" (click)="openModalActive(dataTask)"> <i class="bi bi-trash3"></i></a>
+        </td>
+        <td>{{dataTask.id}}</td>
+        <td>{{dataTask.description}}</td>
+        <td>{{dataTask.validateDate | date:'dd-MM-yyyy HH:mm'}}</td>
+        <td  [ngStyle]="{'color':getColor(dataTask.status)}" style="color: blueviolet;">{{getDisplay(dataTask.status)}}</td>
+        <td>{{dataTask.createdAt  | date:'dd-MM-yyyy HH:mm'}}</td>
+        <td>{{dataTask?.updatedAt | date:'dd-MM-yyyy HH:mm'}}</td>
+    </tr>
+    </tbody>
+</table>
+<p *ngIf="!dataTasks || dataTasks.length <= 0">Tarefas não encontradas</p>
+</div>
+
+<app-loadmask [hidden]="!loading"></app-loadmask>
+
+<app-modal [activeModal]="activeModal"
+           [titleModal]="titleModal"
+           [descriptionModal]="descriptionModal"
+           (onCloseActiveModal)="closeActiveModal()"
+           (doconfirmActive)="confirmActiveModal()"></app-modal>
+
+<app-toast [toastStyle]="toastStyle" [message]="toastMessage" [visible]="toastVisible"></app-toast>

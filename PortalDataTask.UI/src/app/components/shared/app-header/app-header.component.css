@@ -1,0 +1,41 @@
+.userLogged {
+    color: #999999;
+    float: right;
+    font-size: 13px;
+    font-family: HelveticaLight;
+    height: 3em;
+    position: relative;
+    top: 14px;
+    width: auto;
+  }
+    .userLogged .userLogged-name {
+      font-size: 16px;
+      overflow: hidden;
+      text-align: right;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: auto;
+      color: white;
+    }
+    .userLogged .userLogged-info {
+      padding-right: 1em;
+      padding-left: 1em;
+      float: left;
+      position: relative;
+      width: auto;
+      color: #999999;
+      top: 2px;
+    }
+    .userLogged .userLogged-logoff {
+      float: right;
+      color: #999999;
+      font-size: 1.5em;
+      margin-right: 1.2em;
+      margin-top: 0.2em;
+    }
+    .userLogged-logoff i.icon-logout {
+      cursor: pointer;
+    }
+    .userLogged-logoff i.icon-logout:hover {
+      color:red;
+    }
